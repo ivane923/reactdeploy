@@ -1,0 +1,276 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;900&display=swap");
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.bg-light {
+  background-color: #f8f9fa;
+}
+
+.d--none {
+  display: none !important;
+}
+
+.mt--auto {
+  margin-top: auto;
+}
+
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.loader.show {
+  display: flex;
+}
+
+.dot-container {
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #fff;
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.dot-1 {
+  animation-delay: -0.32s;
+}
+
+.dot-2 {
+  animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+#pendulum {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#pendulum .context {
+  height: 50vh;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  width: 70%;
+  margin: 0 .1rem;
+}
+
+#pendulum .context .context-wrapper {
+  width: 100%;
+  height: 70px;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#pendulum .context .context-title {
+  text-align: center;
+  font-weight: 200;
+  text-transform: uppercase;
+  display: inline;
+  color: rgb(188, 52, 52) !important;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+#pendulum .context .context-title.active {
+  display: inline;
+}
+
+#pendulum-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 60%;
+  height: 100%;
+}
+
+#pendulum-wrapper {
+  position: relative;
+  left: 0;
+  top: 0;
+}
+
+.pendulum-child {
+  width: 71px;
+  height: 100%;
+  position: relative;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 1050;
+  cursor: grab;
+  touch-action: none;
+}
+
+.pendulum-child::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 1px;
+  background-color: #bbb;
+  height: 150%;
+  z-index: 0;
+}
+
+.pendulum-child img {
+  width: 90px;
+  height: 90px;
+  z-index: 2;
+  position: relative;
+}
+
+.pendulum-parent {
+  position: relative;
+  animation: none;
+  transform-origin: 0 0;
+  transition: transform .10s linear;
+  width: 71px;
+  height: 50vh;
+}
+
+.pendulum-parent #drag-instruction {
+  position: absolute;
+  bottom: 1.5rem;
+  left: -11rem;
+  width: 150px;
+}
+
+.pendulum-parent #drag-instruction img {
+  height: 100%;
+  width: 100%;
+}
+
+.rotate-0 {
+  transform: rotate(0deg);
+}
+
+.pendulum-parent1.animate-1 {
+  animation: rotateParent1Animate1 .65s alternate ease-in infinite;
+}
+
+.pendulum-parent2.animate-1 {
+  animation: rotateParent2Animate1 .65s alternate ease-out infinite;
+}
+
+:root {
+  --deg: 30deg;
+  --deg2: -30deg;
+}
+
+@keyframes rotateParent1Animate1 {
+  0% {
+    transform: rotate(var(--deg));
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes rotateParent2Animate1 {
+  50% {
+    transform: rotate(1deg);
+  }
+  100% {
+    transform: rotate(var(--deg2));
+  }
+}
+
+@media (max-width: 991px) {
+  .pendulum-parent #drag-instruction {
+    bottom: 1.8rem;
+    left: -8rem;
+    width: 100px;
+  }
+  #pendulum .context .context-title {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 767px) {
+  #pendulum #pendulum-container {
+    width: 70%;
+  }
+  #pendulum #pendulum-container .context {
+    width: 85%;
+  }
+  #pendulum .context .context-title {
+    white-space: normal !important;
+    font-size: 4vw !important;
+  }
+  .pendulum-parent1.animate-1 {
+    animation: rotateParent1Animate2 .65s alternate ease-in infinite;
+  }
+  .pendulum-parent2.animate-1 {
+    animation: rotateParent2Animate2 .65s alternate ease-out infinite;
+  }
+  :root {
+    --deg: 20deg;
+    --deg2: -20deg;
+  }
+  @keyframes rotateParent1Animate2 {
+    0% {
+      transform: rotate(var(--deg));
+    }
+    50% {
+      transform: rotate(0deg);
+    }
+  }
+  @keyframes rotateParent2Animate2 {
+    50% {
+      transform: rotate(1deg);
+    }
+    100% {
+      transform: rotate(var(--deg2));
+    }
+  }
+  .pendulum-parent #drag-instruction {
+    bottom: 1rem;
+    left: -6.5rem;
+    width: 100px;
+  }
+  .pendulum-child img {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 576px) {
+  .pendulum-parent #drag-instruction {
+    bottom: -2rem;
+    left: -2.5rem;
+  }
+}
